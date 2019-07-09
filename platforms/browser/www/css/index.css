@@ -230,3 +230,12 @@ h1 {
     margin-right: auto;
     width: 50%;
   }
+
+  .icon2{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 5%;
+  }
+
