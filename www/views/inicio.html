@@ -17,36 +17,71 @@
 </head>
 
 <body>
-    <div data-role="page" id="pagina1">
-        <div data-role="header" style="height: 70px;" id="purple">
-            <h2>PIZZA NOVA</h2>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li><a href="#">Cambiar Contraseña</a></li>
+                <li><a href="#">Cerrar Sesión</a></li>
+                <li><a href="#">Ayuda</a></li>
+            </ul>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="statistic__item">
-                            <h2 class="number"></h2>
-                            <span class="desc">Productos</span>
-                            <div class="icon">
-                                <i class="zmdi zmdi-assignment-o"></i>
-                            </div>
-                    </div>
+        <div data-role="page" id="page-content-wrapper">
+            <div class="">
+                <div data-role="header" style="height: 90px;" id="purple" class="text-center">
+                    <img src="../img/logo.png">
+                    <a href="#" class="btn" id="menu-toggle"><span class="zmdi zmdi-sort-amount-desc"></span></a>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="statistic__item" id="data-categorias">
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="statistic__item" id="data-usuarios">
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="statistic__item" id="data-empleados">
+                <br>
+                <h1 class="text-center">INICIO</h1>
+                <hr>
+                <div class="">
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <a href="#">
+                                <div class="statistic__item">
+                                    <h2 class="number">PERFIL</h2>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-assignment-o"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="#">
+                                <div class="statistic__item">
+                                    <h2 class="number">MESAS</h2>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-archive"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="#">
+                                <div class="statistic__item">
+                                    <h2 class="number">REPORTES</h2>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-book"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="#">
+                                <div class="statistic__item">
+                                    <h2 class="number">GRÁFICOS</h2>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-collection-item"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 <script type="text/javascript" src="../cordova.js"></script>
 <script type="text/javascript" src="../js/index.js"></script>
@@ -54,6 +89,7 @@
 <script type="text/javascript" src="../js/jquery.mobile-1.4.5.js"></script>
 <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="../js/jquery.slim.min.js"></script>
+<script type="text/javascript" src="../js/tema.js"></script>
 </body>
 
 </html>
