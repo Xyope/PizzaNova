@@ -1,0 +1,28 @@
+.statistic__item {
+    border: 1px solid #e5e5e5;
+    background: #44344F;
+    padding: 20px 30px;
+    position: relative;
+    min-height: 180px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.statistic__item .icon {
+    display: inline-block;
+    position: absolute;
+    bottom: -50px;
+    right: -7px;
+}
+
+.statistic__item .icon i {
+    font-size: 180px;
+    color: #808080;
+    opacity: .2;
+    line-height: 1;
+    vertical-align: baseline;
+}
+
+.statistic2 .statistic__item h2 {
+    color: #000000;
+}
