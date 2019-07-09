@@ -223,3 +223,10 @@ h1 {
       color: #777;
     }
   }
+
+  .icon{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
