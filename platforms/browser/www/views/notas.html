@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="../css/all.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="../css/tema.css" rel="stylesheet" media="all">
+    <link href="../css/material-design-iconic-font.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#insert").click(function() {
+            var title = $("#title").val();
+            var duration = $("#duration").val();
+            var price = $("#price").val();
+            var dataString = "title=" + title + "&duration=" + duration + "&price=" + price + "&insert=";
+            if ($.trim(title).length > 0 & $.trim(duration).length > 0 & $.trim(price).length > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "http://34.73.11.215/php/insert.php",
+                    data: dataString,
+                    crossDomain: false,
+                    cache: false,
+                    beforeSend: function() {
+                        $("#insert").val('Connecting...');
+                    },
+                    success: function(data) {
+                        if (data == "success") {
+                            alert("inserted");
+                            $("#insert").val('submit');
+                        } else if (data == "error") {
+                            alert("error");
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+    });
+    </script>
+    <title>INICIO</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li><a href="#">Cambiar Contraseña</a></li>
+                <li><a href="#">Cerrar Sesión</a></li>
+                <li><a href="#">Ayuda</a></li>
+            </ul>
+        </div>
+    <!--  -->
+    <div class="list">
+        <input type="hidden" id="id" value="" />
+        <div class="item">
+            <label>Title</label>
+            <input type="text" id="title" value="" />
+        </div>
+        <div class="item">
+            <label>Duration</label>
+            <input type="text" id="duration" value="" />
+        </div>
+        <div class="item">
+            <label>Price</label>
+            <input type="text" id="price" value="" />
+        </div>
+        <div class="item">
+            <input type="button" id="insert" class="button button-block" value="Insert" />
+        </div>
+    </div>
+</body>
+</html>
