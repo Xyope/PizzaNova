@@ -26,12 +26,12 @@
                    <br><br>
                   <div class="form-group">
                     <label>Usuario</label>
-                      <input name="" id="usuario" class="form-control" placeholder="Usuario" type="text">
+                      <input name="alias" id="alias" class="form-control" placeholder="Usuario" type="text">
                   </div> <!-- form-group// -->
                   <div class="form-group">
                     <a class="float-right" href="views/perfil.html">CONTRASEÑA OLVIDADA?</a>
                     <label>password</label>
-                      <input class="form-control" id="password" placeholder="******" type="password">
+                      <input class="form-control" name="password" id="password" placeholder="******" type="password">
                   </div> <!-- form-group// --> 
                   <div class="form-group"> 
                   <div class="checkbox">
@@ -43,12 +43,15 @@
               </form>
               </article>
               </body>
+        
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        
         <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="js/jquery.slim.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>        
+        
+        <script type="text/javascript" src="js/index.js"></script>
 
         <!-- <script>
             // Initialize Firebase
@@ -63,39 +66,40 @@
           </script> -->
 
 
-        <script type="text/javascript">
-          $(document).ready(function() {
-              $("#login").submit(function() {
-                  var idusuario = $("#usuario").val();
-                  var alias = $("#password").val();
-
-                  var dataString = "title=" + title + "&duration=" + duration + "&price=" + price + "&insert=";
-                  
-                  if ($.trim(title).length > 0 & $.trim(duration).length > 0 & $.trim(price).length > 0) {
-
-                      $.ajax({
-                          type: "POST",
-                          url: "../../php/json.php",
-                          data: dataString,
-                          crossDomain: false,
-                          cache: false,
-                          beforeSend: function() {
-                              $("#login").val('Connecting...');
-                          },
-                          success: function(data) {
-                              if (data == "success") {
-                                  alert("Sesión iniciada");
-                              } else if (data == "error") {
-                                  alert("error");
-                              }
-                          }
-                      });
-                  }
-                  return false;
-              });
-          });
-          </script>
+       
 
 
-    </body>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#login").click(function() {
+              var clave = $("#password").val();
+                var alias = $("#alias").val();
+
+                var dataString = "alias=" + alias + "&clave_usuario=" + clave;
+                
+                if ($.trim(alias).length > 0 & $.trim(clave).length > 0) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "php/json.php",
+                        data: dataString,
+                        crossDomain: false,
+                        cache: false,
+                        beforeSend: function() {
+                            $("#login").val('Connecting...');
+                        },
+                        success: function(data) {
+                            if (data == "success") {
+                                alert("Sesión iniciada");
+                            } else if (data == "error") {
+                                alert("error");
+                            }
+                        }
+                    });
+                }
+                
+            });return false;
+        });
+        </script>
 </html>
