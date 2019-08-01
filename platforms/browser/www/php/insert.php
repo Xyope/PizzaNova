@@ -10,4 +10,6 @@
  else
   echo "error";
  }
+
+ print_r("hola");
  ?>
