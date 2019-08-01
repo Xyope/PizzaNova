@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var url = "http://localhost/php/json.php";
+            $.getJSON(url, function (result) {
+                console.log(result);
+                $.each(result, function (i, field) {
+                    var id_tarea = field.id_tarea;
+                    var mensaje = field.mensaje;
+                    var importancia = field.importancia;
+                    $("#listview").append("<a class='item' href='form.html?id=" + id +
+                        "&mensaje=" + mensaje + "&importancia=" + importancia +
+                        "'><span class='item-note'></span><h2>" + mensaje + " </h2><p>" +
+                        importancia + "</p></a>");
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="bar bar-header bar-positive" style="margin-bottom:80px;">
+        <a href="notas.html" class="button button-clear">Home</a>
+        <h1 class="title">Leyendo las tareas</h1>
+    </div>
+    <br />
+    <br />
+    <ul class="list" id="listview">
+    </ul>
+</body>
+
+</html>

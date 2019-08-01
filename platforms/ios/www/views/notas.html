@@ -32,7 +32,6 @@
         <br>
         <h1 class="text-center">Tareas</h1>
         <hr>
-        <form id="form-create">
         <div class="form-group">
           <label>Mensaje</label>
           <input id="mensaje" name="mensaje" class="form-control" placeholder="Mensaje" type="text">
@@ -45,29 +44,25 @@
         </div>
       </div>
       <div class="form-group">
-        <button type="submit" id="insert" class="btn btn-primary btn-block"> Agregar </button>
+        <button type="submit" id="insert" class="btn btn-success btn-block"> Agregar </button>
       </div>
     </div>
-  </form>
 </body>
 <script type="text/javascript" src="../js/index.js"></script>
-
 <script type="text/javascript" src="../js/geturi.js"></script>
 <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="../js/sweetalert.min.js"></script>
 <script type="text/javascript" src="../js/functions.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
 <script type="text/javascript" src="../js/tema.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
     $("#insert").click(function () {
       var mensaje = $("#mensaje").val();
       var importancia = $("#importancia").val();
-      
       var dataString = "mensaje=" + mensaje + "&importancia=" + importancia + "&insert=";
       if ($.trim(mensaje).length > 0 & $.trim(importancia).length > 0) {
-        console.log('ok');
-        /* console.log(result.data); */
+        console.log("hola")
         $.ajax({
           type: "POST",
           url: "http://localhost/php/insert.php",
@@ -76,11 +71,12 @@
           cache: false,
           beforeSend: function () {
             $("#insert").val('Connecting...');
-            console.log('ok');
-            sweetAlert(1, 'Dato ingresado');
+            sweetAlert(1, "Dato ingresado", 'notas.html');
           },
           success: function (data) {
             if (data == "success") {
+              
+              alert("inserted");
               $("#insert").val('submit');
             } else if (data == "error") {
               alert("error");
@@ -92,9 +88,5 @@
     });
   });
 </script>
-</body>
 
 </html>
-
-
-
