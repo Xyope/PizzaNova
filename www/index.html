@@ -57,27 +57,34 @@
         <script type="text/javascript" src="../js/tema.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                        $("#login").click(function () {
-                                var usuario = $("#alias").val();
-                                var contraseña = $("#password").val();
-                                $.ajax({
-                                        type: "POST",
-                                        url: "http://localhost/php/insert_notas.php",
-                                        data: dataString,
-                                        crossDomain: false,
-                                        cache: false,
-                                        beforeSend: function () {
-                                            $("#login").val('Ingresado correctamente');
-                                        },
-                                        success: function (data) {
-                                            if (data == "success") {
-                                                sweetAlert(1, "Usuario Correcto", 'inicio.html');
-                                                $("#login").val('submit');
-                                            } else if (data == "error") {
-                                                alert("error");
-                                            }
-                                        }
-                                });
-                        }
-</script>
+                $("#login").click(function () {
+                    var mensaje = $("#alias").val();
+                    var importancia = $("#password").val();
+                    var dataString = "alias=" + alias + "&password=" + password + "&insert=";
+                    if ($.trim(alias).length > 0 & $.trim(password).length > 0) {
+                        console.log("hola")
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/php/insert_notas.php",
+                            data: dataString,
+                            crossDomain: false,
+                            cache: false,
+                            beforeSend: function () {
+                                $("#login").val('Entro Correctamente');
+                            },
+                            success: function (data) {
+                                if (data == "success") {
+                                    sweetAlert(1, "Ingreso correctamente", 'inicio.html');
+                                    $("#login").val('submit');
+                                } else if (data == "error") {
+                                    alert("error");
+                                }
+                            }
+                        });
+                    }
+                    return false;
+                });
+            });
+        </script>
+
 </html>
