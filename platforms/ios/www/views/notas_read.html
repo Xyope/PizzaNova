@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.5.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="../css/all.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="../css/tema.css" rel="stylesheet" media="all">
+    <link href="../css/material-design-iconic-font.css" rel="stylesheet" media="all">
+    <title>INICIO</title>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li><a href="#">Cambiar Contraseña</a></li>
+                <li><a href="#">Cerrar Sesión</a></li>
+                <li><a href="#">Ayuda</a></li>
+                <li><a href="notas_read.html">Tareas</a></li>
+            </ul>
+        </div>
+        <form id="form-group" name="form-group">
+            <div data-role="page" id="page-content-wrapper">
+                <div class="">
+                    <div data-role="header" style="height: 90px;" id="purple" class="text-center">
+                        <img src="../img/logo.png">
+                        <a href="#" class="btn" id="menu-toggle"><span class="zmdi zmdi-sort-amount-desc"></span></a>
+                    </div>
+
+                </div>
+        </form>
+
+        <br>
+
+
+        <h1 class="text-center">Tareas</h1>
+        <hr>
+        <ul class="list" id="list-view">
+            <a align="center" class="btn btn-success btn-block" href="notas.html">
+                Agregar tarea</a>
+            <br>
+            <br>
+        </ul>
+    </div>
+    </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/geturi.js"></script>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/sweetalert.min.js"></script>
+<script type="text/javascript" src="../js/functions.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/tema.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var url = "http://localhost/php/json.php";
+        $.getJSON(url, function (result) {
+
+            $.each(result, function (i, field) {
+                var id_tarea = field.id_tarea;
+                var mensaje = field.mensaje;
+                var importancia = field.importancia;
+                console.log(id_tarea);
+                $("#list-view").append("<a href='notas_update.html?id_tarea=>" +
+                    id_tarea + "&mensaje=" + mensaje +
+                    "&importancia=" + importancia + "'><a>" +
+                    "</span><h2>" + mensaje + " </h2>" + importancia +
+                    "</p><div class='container'><button type='submit' id='delete' value='" +
+                    id_tarea +
+                    "' class='btn btn-danger btn-block'> Eliminar tarea </button><p>" +
+                    "</p><button type='submit' id='update' class='btn btn-primary  btn-block'> Actualizar tarea </button><p></div><hr></a>  "
+
+                );
+            });
+        });
+    });
+
+    $("#delete").click(function () {
+        var id = $("#delete").val();
+        var dataString = "id=" + id_tarea + "&delete=";
+        console.log("hola mami")
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/php/delete.php",
+            data: dataString,
+            crossDomain: true,
+            cache: false,
+            beforeSend: function () {
+                $("#delete").val('Connecting...');
+            },
+            success: function (data) {
+                if (data == "success") {
+                    alert("Deleted");
+                    $("#delete").val("Delete");
+                } else if (data == "error") {
+                    alert("error");
+                }
+            }
+        });
+    });
+</script>
+
+</html>

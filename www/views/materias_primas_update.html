@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+  <!-- <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.5.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" media="all">
+  <link rel="stylesheet" type="text/css" href="../css/all.css" rel="stylesheet" media="all">
+  <link rel="stylesheet" type="text/css" href="../css/tema.css" rel="stylesheet" media="all">
+  <link href="../css/material-design-iconic-font.css" rel="stylesheet" media="all">
+
+  <title>INICIO</title>
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li><a href="#">Cambiar Contraseña</a></li>
+        <li><a href="#">Cerrar Sesión</a></li>
+        <li><a href="#">Ayuda</a></li>
+        <li><a href="notas_read.html">Tareas</a></li>
+        <li><a href="materias_primas_read.html">Materias primas</a></li>
+      </ul>
+    </div>
+    <div data-role="page" id="page-content-wrapper">
+      <div class="container">
+        <div data-role="header" style="height: 90px;" id="purple" class="text-center">
+          <img src="../img/logo.png">
+          <a href="#" class="btn" id="menu-toggle"><span class="zmdi zmdi-sort-amount-desc"></span></a>
+        </div>
+        <br>
+        <input type="hidden" id="idMateria" value="" />
+        <h1 class="text-center">Materias primas</h1>
+        <hr>
+        <div class="form-group">
+          <label>Nombre</label>
+          <input id="nombre_materia" name="nombre_materia" class="form-control" type="text">
+          <label>Descripción</label>
+          <input id="descripcion" name="descripcion" class="form-control" type="text">
+          <label>Cantidad</label>
+          <input id="cantidad" name="cantidad" class="form-control" type="number" min="1" max="999">
+      </div>
+
+      <div class="form-group">
+        <div class="checkbox">
+        </div>
+      </div>
+      <div class="form-group"> <button type="submit" id="update" class="btn btn-primary btn-block"> Modificar </button>
+        <a class="btn btn-secondary btn-block" href="materias_primas_read.html">Ver materias primas</a>
+      </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/geturi.js"></script>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/sweetalert.min.js"></script>
+<script type="text/javascript" src="../js/functions.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/tema.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    var idMateria = decodeURI(getUrlVars()["idMateria"]);
+    var nombre_materia = decodeURI(getUrlVars()["nombre_materia"]);
+    var descripcion = decodeURI(getUrlVars()["descripcion"]);
+    var cantidad = decodeURI(getUrlVars()["cantidad"]);
+    $("#idMateria").val(idMateria);
+    $("#nombre_materia").val(nombre_materia);
+    $("#descripcion").val(descripcion);
+    $("#cantidad").val(cantidad);
+    $("#update").click(function () {
+      var idMateria = $("#idMateria").val();
+      var nombre_materia = $("#nombre_materia").val();
+      var descripcion = $("#descripcion").val();
+      var cantidad = $("#cantidad").val();
+      var dataString = "&idMateria=" + idMateria + "&nombre_materia=" + nombre_materia + "&descripcion=" + descripcion + "&cantidad=" + cantidad + "&update=";
+        console.log(dataString);
+      $.ajax({
+        type: "POST",
+        url: "http://localhost/php/update_materia.php",
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        beforeSend: function () {
+          $("#update").val('Connecting...');
+        },
+        success: function (data) {
+          if (data == "success") {
+            sweetAlert(1, "Tarea actualizada correctamente", null);
+            $("#update").val("Update");
+          } else if (data == "error") {
+            alert("error");
+          }
+        }
+      });
+
+    });
+  });
+
+</script>
+
+</html>

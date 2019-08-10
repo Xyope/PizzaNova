@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.5.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="../css/all.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="../css/tema.css" rel="stylesheet" media="all">
+    <link href="../css/material-design-iconic-font.css" rel="stylesheet" media="all">
+    <title>INICIO</title>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li><a href="#">Cambiar Contraseña</a></li>
+                <li><a href="#">Cerrar Sesión</a></li>
+                <li><a href="#">Ayuda</a></li>
+                <li><a href="notas_read.html">Tareas</a></li>
+                <li><a href="materias_primas_read.html">Materias primas</a></li>
+            </ul>
+        </div>
+        <form id="form-group" name="form-group">
+            <div data-role="page" id="page-content-wrapper">
+                <div class="">
+                    <div data-role="header" style="height: 90px;" id="purple" class="text-center">
+                        <img src="../img/logo.png">
+                        <a href="#" class="btn" id="menu-toggle"><span class="zmdi zmdi-sort-amount-desc"></span></a>
+                    </div>
+
+                </div>
+        </form>
+        <br>
+        <h1 class="text-center">Materias primas</h1>
+        <hr>
+        <ul class="list" id="list-view">
+            <a align="center" class="btn btn-success btn-block" href="materias_primas.html">
+                Agregar materia prima</a>
+            <br>
+            <br>
+        </ul>
+    </div>
+    </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/geturi.js"></script>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/sweetalert.min.js"></script>
+<script type="text/javascript" src="../js/functions.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/tema.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var url = "http://localhost/php/json_materia.php";
+
+        $.getJSON(url, function (result) {
+
+            $.each(result, function (i, field) {
+                var idMateria = field.idMateria;
+                var nombre_materia = field.nombre_materia;
+                var descripcion = field.descripcion;
+                var cantidad = field.cantidad;
+                $("#list-view").append("<a href='materias_primas_update.html?idMateria=" +
+                    idMateria + "&nombre_materia=" + nombre_materia + "&descripcion=" +
+                    descripcion + "&cantidad" + cantidad + "'>" +
+                    "</span><h5>Materia prima:</h5><h2>" + nombre_materia +
+                    " </h2>" + cantidad + " unidades<br>" + descripcion + "</a>" +
+                    "</p><div class='container'><button id='delete' onclick='delete_materia(" +
+                    idMateria +
+                    ")' class='btn btn-danger btn-block'> Eliminar materia prima </button><p>"
+                );
+            });
+        });
+    });
+
+    function delete_materia(id) {
+        var dataString = "id=" + id + "&delete=";
+        console.log("hola mami");
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/php/delete_materia.php",
+            data: dataString,
+            crossDomain: true,
+            cache: false,
+            beforeSend: function () {
+                $("#delete").val('Connecting...');
+            },
+            success: function (data) {
+                sweetAlert(1, 'Materia prima eliminada correctamente', materias_primas_read.html);
+                if (data == "success") {
+                    alert("Deleted");
+                    $("#delete").val("Delete");
+                } else if (data == "error") {
+                    alert("error");
+                }
+            }
+        });
+    }
+</script>
+
+</html>
