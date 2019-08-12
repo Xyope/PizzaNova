@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
@@ -9,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="../css/all.css" rel="stylesheet" media="all">
   <link rel="stylesheet" type="text/css" href="../css/tema.css" rel="stylesheet" media="all">
   <link href="../css/material-design-iconic-font.css" rel="stylesheet" media="all">
-  
+
   <title>INICIO</title>
 </head>
 
@@ -18,13 +19,15 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav">
-        <li><a href="#">Cambiar Contraseña</a></li>
-        <li><a href="#">Cerrar Sesión</a></li>
-        <li><a href="#">Ayuda</a></li>
+          <li><a href="#">Cambiar Contraseña</a></li>
+          <li><a href="#">Cerrar Sesión</a></li>
+          <li><a href="#">Ayuda</a></li>
+          <li><a href="notas_read.html">Tareas</a></li>
+          <li><a href="materias_primas_read.html">Materias primas</a></li>
       </ul>
     </div>
     <div data-role="page" id="page-content-wrapper">
-      <div class="">
+      <div class="container">
         <div data-role="header" style="height: 90px;" id="purple" class="text-center">
           <img src="../img/logo.png">
           <a href="#" class="btn" id="menu-toggle"><span class="zmdi zmdi-sort-amount-desc"></span></a>
@@ -45,6 +48,7 @@
       </div>
       <div class="form-group">
         <button type="submit" id="insert" class="btn btn-success btn-block"> Agregar </button>
+        <a class="btn btn-secondary btn-block" href="notas_read.html">Ver tareas</a>
       </div>
     </div>
 </body>
@@ -65,18 +69,16 @@
         console.log("hola")
         $.ajax({
           type: "POST",
-          url: "http://localhost/php/insert.php",
+          url: "http://localhost/php/insert_notas.php",
           data: dataString,
           crossDomain: false,
           cache: false,
           beforeSend: function () {
             $("#insert").val('Connecting...');
-            sweetAlert(1, "Dato ingresado", 'notas.html');
           },
           success: function (data) {
             if (data == "success") {
-              
-              alert("inserted");
+              sweetAlert(1, "Tareas guardada", 'notas.html');
               $("#insert").val('submit');
             } else if (data == "error") {
               alert("error");
