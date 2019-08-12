@@ -3,8 +3,9 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <!-- <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+        <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline';>
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -48,27 +49,28 @@
                         </form>
                     </article>
         </body>
-        <script type="text/javascript" src="../js/index.js"></script>
-        <script type="text/javascript" src="../js/geturi.js"></script>
-        <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="../js/sweetalert.min.js"></script>
-        <script type="text/javascript" src="../js/functions.js"></script>
-        <script type="text/javascript" src="../js/index.js"></script>
-        <script type="text/javascript" src="../js/tema.js"></script>
-        <script type="text/javascript">
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/geturi.js"></script>
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/sweetalert.min.js"></script>
+        <script type="text/javascript" src="js/functions.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/tema.js"></script>
+        <script>
             $(document).ready(function () {
                 $("#login").click(function () {
-                    var mensaje = $("#alias").val();
-                    var importancia = $("#password").val();
-                    var dataString = "alias=" + alias + "&password=" + password + "&insert=";
-                    if ($.trim(alias).length > 0 & $.trim(password).length > 0) {
-                        console.log("hola")
+                    var username = $("#alias").val();
+                    var pass = $("#password").val();
+                    $("login").val("Ingresando");
+                    var dataString = "alias=" + username + "&password=" + pass + "&login=";
+                    if ($.trim(username).length > 0 & $.trim(pass).length > 0) {
                         $.ajax({
                             type: "POST",
-                            url: "http://localhost/php/insert_notas.php",
+                            url: "http://localhost:8080/php/login.php",
                             data: dataString,
-                            crossDomain: false,
+                            crossDomain: true,
                             cache: false,
+
                             beforeSend: function () {
                                 $("#login").val('Entro Correctamente');
                             },
