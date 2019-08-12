@@ -1,7 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin:*");
- include "db.php";
- print_r($_POST);   
+ include "db.php";  
  if(isset($_POST['insert']))
  {
  $mensaje=$_POST['mensaje'];

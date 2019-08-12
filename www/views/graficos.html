@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline' ;>
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -35,45 +36,63 @@
                 <br>
                 <h1 class="text-center">Graficos</h1>
                 <hr>
+                <!-- haciendo graficos -->
+                <div class="au-card-inner">
+                    <h5 align="center">Existencias por categoría (productos por agotar)</h5>
+                    <canvas id="existencia_categoria_agotar"></canvas>
+                </div>
+
             </div>
+
+            <script type="text/javascript" src="../js/index.js"></script>
+            <script type="text/javascript" src="../js/geturi.js"></script>
+            <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+            <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+            <script type="text/javascript" src="../js/functions.js"></script>
+            <script type="text/javascript" src="../js/index.js"></script>
+            <script type="text/javascript" src="../js/tema.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                            graficar_existencia_categoria_agotar();
+
+                            function graficar_existencia_categoria_agotar() {
+                                //se manda a pedir los datos de la api
+                                $.ajax({
+                                        url: "http://localhost:8080/php/graficos.php" + 'existencias_categoria_agotar',
+                                        type: 'post',
+                                        data: null,
+                                        datatype: 'json'
+                                    })
+                                    .done(response => {
+                                        //se hacen los arreglos para poder recorrer las filas de la consulta
+                                        var nombre = [];
+                                        var existencia = [];
+                                        //se genera un ciclo para poder recorrer las filas de la tabla de la base de datos
+                                        const result = JSON.parse(response);
+                                        result.dataset.forEach(row => {
+                                            //se recorren todos los datos que esten en las filas especificadas en el row
+                                            nombre.push(row.nombre_categoria);
+                                            existencia.push(parseInt(row.cantidad));
+                                        });
+                                        //se mandar los parametros de la funcion que se crea en el controlador de function.js los cuales son el id, xAxis, yAxis y legend
+                                        grafico_existencia_categoria_agotar("existencia_categoria_agotar", nombre,
+                                            existencia, "Existencias.",
+                                            "Existencia de materia prima por categoria (productos a punto de acabarse)"
+                                            )
+                                    })
+
+                                    //en caso de error se ejecuta esta funcion
+                                    .fail(function (jqXHR) {
+                                        //Se muestran en consola los posibles errores de la solicitud AJAX
+                                        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+                                    });
+
+
+                }
+            })
+                
+                
+            </script>
 </body>
-<script type="text/javascript" src="../js/index.js"></script>
-<script type="text/javascript" src="../js/geturi.js"></script>
-<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../js/sweetalert.min.js"></script>
-<script type="text/javascript" src="../js/functions.js"></script>
-<script type="text/javascript" src="../js/index.js"></script>
-<script type="text/javascript" src="../js/tema.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#insert").click(function () {
-            var mensaje = $("#mensaje").val();
-            var importancia = $("#importancia").val();
-            var dataString = "mensaje=" + mensaje + "&importancia=" + importancia + "&insert=";
-            if ($.trim(mensaje).length > 0 & $.trim(importancia).length > 0) {
-                console.log("hola")
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost/php/insert_notas.php",
-                    data: dataString,
-                    crossDomain: false,
-                    cache: false,
-                    beforeSend: function () {
-                        $("#insert").val('Connecting...');
-                    },
-                    success: function (data) {
-                        if (data == "success") {
-                            sweetAlert(1, "Tareas guardada", 'notas.html');
-                            $("#insert").val('submit');
-                        } else if (data == "error") {
-                            alert("error");
-                        }
-                    }
-                });
-            }
-            return false;
-        });
-    });
-</script>
 
 </html>
