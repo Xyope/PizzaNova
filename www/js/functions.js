@@ -223,7 +223,7 @@ function grafica_venta_platillos_menores(canvas, xAxis, yAxis, legend, title) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 1
+                        stepSize: 15
                     }
                 }]
             }

@@ -15,7 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 include "db.php";
-$sql= $sql = 'SELECT nombre_platillo, precio FROM platillos ORDER BY precio DESC LIMIT 5';
+$sql= $sql = 'SELECT SUM(cantidad) as cantidad, nombre_platillo, precio*SUM(cantidad) as subtotal
+from platillos INNER JOIN detalle_pedido USING (id_platillo) 
+where platillos.estado = 1 GROUP BY nombre_platillo ORDER BY subtotal DESC LIMIT 5';
 //$sql = 'SELECT SUM(materiasprimas.cantidad) cantidad, nombre_categoria FROM materiasprimas INNER JOIN categorias USING (id_categoria) WHERE materiasprimas.estado = 1 GROUP BY nombre_categoria ORDER BY nombre_categoria DESC LIMIT 5';
 $result = $con->query($sql);
 $pro = array();
