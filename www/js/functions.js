@@ -89,7 +89,7 @@ function grafico_existencia_categoria_agotar(canvas, xAxis, yAxis, legend, title
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 50
+                        stepSize: 5
                     }
                 }]
             }
@@ -132,7 +132,7 @@ function grafico_existencia_categoria(canvas, xAxis, yAxis, legend, title) { //r
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 5
+                        stepSize: 2
                     }
                 }]
             }
@@ -142,52 +142,6 @@ function grafico_existencia_categoria(canvas, xAxis, yAxis, legend, title) { //r
 
 //funcion que se llena con los parametros que se obtienen en index.js 
 function grafica_venta_platillos_mayor(canvas, xAxis, yAxis, legend, title) {
-    //ramdon para la obtención de colores al azar
-    let colors = [];
-    for (i = 0; i < xAxis.length; i++) {
-        colors.push('#' + (Math.random().toString(16).substring(2, 8)));
-    }
-    //se especifica el id de la vista
-    const context = $("#" + canvas);
-    const MyPieChart = new Chart(context, {
-        //se especifica el tipo de grafica que se va a utilizar
-        type: 'pie',
-        data: {
-            //se especifica los nombres con los que se trabajaran
-            labels: xAxis,
-            datasets: [{
-                label: legend,
-                //se especifica los valores de la grafica
-                data: yAxis,
-                backgroundColor: colors,
-                borderColor: '#000000',
-                borderWith: 1
-            }]
-        },
-        options: {
-            legend: {
-                display: true,
-                position: "right"
-            },
-            title: {
-                display: true,
-                text: title
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        stepSize: 5
-                    }
-                }]
-            }
-        }
-    });
-}
-
-
-//funcion que se llena con los parametros que se obtienen en index.js 
-function grafica_venta_platillos_menores(canvas, xAxis, yAxis, legend, title) {
     //ramdon para la obtención de colores al azar
     let colors = [];
     for (i = 0; i < xAxis.length; i++) {
@@ -223,7 +177,53 @@ function grafica_venta_platillos_menores(canvas, xAxis, yAxis, legend, title) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 5
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
+    });
+}
+
+
+//funcion que se llena con los parametros que se obtienen en index.js 
+function grafica_venta_platillos_menores(canvas, xAxis, yAxis, legend, title) {
+    //ramdon para la obtención de colores al azar
+    let colors = [];
+    for (i = 0; i < xAxis.length; i++) {
+        colors.push('#' + (Math.random().toString(16).substring(2, 8)));
+    }
+    //se especifica el id de la vista
+    const context = $("#" + canvas);
+    const MyPieChart = new Chart(context, {
+        //se especifica el tipo de grafica que se va a utilizar
+        type: 'bar',
+        data: {
+            //se especifica los nombres con los que se trabajaran
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                //se especifica los valores de la grafica
+                data: yAxis,
+                backgroundColor: colors,
+                borderColor: '#000000',
+                borderWith: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: true,
+                position: "right"
+            },
+            title: {
+                display: true,
+                text: title
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
                     }
                 }]
             }
@@ -303,6 +303,47 @@ function grafica_platillos_baratos(canvas, xAxis, yAxis, legend, title) {
             legend: {
                 display: true,
                 position: "right"
+            },
+            title: {
+                display: true,
+                text: title
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 5
+                    }
+                }]
+            }
+        }
+    });
+}
+function grafico_existencia_categoria_sobre_existen(canvas, xAxis, yAxis, legend, title) { //ramdon para la obtención de colores al azar
+    let colors = [];
+    for (i = 0; i < xAxis.length; i++) {
+        colors.push('#' + (Math.random().toString(16).substring(2, 8)));
+    }
+    //se especifica el id de la vista
+    const context = $("#" + canvas);
+    const MyPieChart = new Chart(context, {
+        //se especifica el tipo de grafica que se va a utilizar
+        type: 'bar',
+        data: {
+            //se especifica los nombres con los que se trabajaran
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                //se especifica los valores de la grafica
+                data: yAxis,
+                backgroundColor: colors,
+                borderColor: '#000000',
+                borderWith: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
             },
             title: {
                 display: true,

@@ -58,7 +58,7 @@
 <script type="text/javascript" src="../js/tema.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var url = "http://localhost/php/json_notas.php";
+        var url = "http://localhost:8080/php/json_notas.php";
         
         $.getJSON(url, function (result) {
 
@@ -83,7 +83,7 @@
         console.log("hola mami")
         $.ajax({
             type: "GET",
-            url: "http://localhost/php/delete_notas.php",
+            url: "http://localhost:8080/php/delete_notas.php",
             data: dataString,
             crossDomain: true,
             cache: false,
