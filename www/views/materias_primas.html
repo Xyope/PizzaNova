@@ -72,9 +72,9 @@
       if ($.trim(nombre_materia).length > 0 & $.trim(descripcion).length > 0 & $.trim(cantidad).length > 0) {
         $.ajax({
           type: "POST",
-          url: "http://localhost/php/insert_materia.php",
+          url: "http://localhost:8080/php/insert_materia.php",
           data: dataString,
-          crossDomain: false,
+          crossDomain: true ,
           cache: false,
           beforeSend: function () {
             $("#insert").val('Connecting...');
@@ -87,7 +87,10 @@
               alert("error");
             }
           }
-        });
+        })
+        .then(res=>{
+          console.log(res)
+        })
       }
       return false;
     });

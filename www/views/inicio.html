@@ -49,9 +49,9 @@
                             </a>
                         </div>
                         <div class="col-md-6 col-lg-3">
-                            <a href="listamesas.html">
+                            <a href="materias_primas.html">
                                 <div class="statistic__item">
-                                    <h2 class="number">MESAS</h2>
+                                    <h2 class="number">MATERIA PRIMA</h2>
                                     <div class="icon">
                                         <i class="zmdi zmdi-archive"></i>
                                     </div>
@@ -69,7 +69,7 @@
                             </a>
                         </div>
                         <div class="col-md-6 col-lg-3">
-                            <a href="#">
+                            <a href="graficos.html">
                                 <div class="statistic__item">
                                     <h2 class="number">GRÁFICOS</h2>
                                     <div class="icon">
@@ -90,6 +90,35 @@
 <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="../js/jquery.slim.min.js"></script>
 <script type="text/javascript" src="../js/tema.js"></script>
+<script>
+    $(document).ready(function () {
+                function signOff() {
+                    swal({
+                            title: 'Advertencia',
+                            text: '¿Quiere cerrar la sesión?',
+                            icon: 'warning',
+                            buttons: ['Cancelar', 'Aceptar'],
+                            closeOnClickOutside: false,
+                            closeOnEsc: false
+                        })
+                        .then(function (value) {
+                            if (value) {
+                                location.href = apiAccount + 'logout';
+                            } else {
+                                swal({
+                                    title: 'Enhorabuena',
+                                    text: 'Continúe con la sesión...',
+                                    icon: 'info',
+                                    button: 'Aceptar',
+                                    closeOnClickOutside: false,
+                                    closeOnEsc: false
+                                });
+                            }
+                        });
+                }
+            }
+    )
+</script>
 </body>
 
 </html>
