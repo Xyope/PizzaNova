@@ -76,12 +76,16 @@
                             },
                             success: function (data) {
                                 if (data == "success") {
-                                    sweetAlert(1, "Ingreso correctamente", 'inicio.html');
+                                    sweetAlert(1, "Ingreso correctamente", 'views/inicio.html');
                                     $("#login").val('submit');
                                 } else if (data == "error") {
                                     alert("error");
                                 }
                             }
+                        })
+                        
+                        .then(res => {
+                            console.log(res)
                         });
                     }
                     return false;

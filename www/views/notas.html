@@ -67,15 +67,15 @@
       var importancia = $("#importancia").val();
       var dataString = "mensaje=" + mensaje + "&importancia=" + importancia + "&insert=";
       if ($.trim(mensaje).length > 0 & $.trim(importancia).length > 0) {
-        console.log("hola")
         $.ajax({
           type: "POST",
-          url: "http://localhost/php/insert_notas.php",
+          url: "http://localhost:8080/php/insert_notas.php",
           data: dataString,
-          crossDomain: false,
+          crossDomain: true,
           cache: false,
           beforeSend: function () {
             $("#insert").val('Connecting...');
+            console.log("hola")
           },
           success: function (data) {
             if (data == "success") {
@@ -83,9 +83,13 @@
               $("#insert").val('submit');
             } else if (data == "error") {
               alert("error");
+
             }
           }
-        });
+        })
+        .then(res=>{
+          console.log(res)
+        })
       }
       return false;
     });

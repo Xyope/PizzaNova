@@ -51,6 +51,7 @@
             <script type="text/javascript" src="../js/functions.js"></script>
             <script type="text/javascript" src="../js/index.js"></script>
             <script type="text/javascript" src="../js/tema.js"></script>
+            <script type="text/javascript" src="../js/chart.bundle.js"></script>
             <script type="text/javascript">
                 $(document).ready(function () {
                             graficar_existencia_categoria_agotar();
@@ -58,17 +59,18 @@
                             function graficar_existencia_categoria_agotar() {
                                 //se manda a pedir los datos de la api
                                 $.ajax({
-                                        url: "http://localhost:8080/php/graficos.php" + 'existencias_categoria_agotar',
+                                        url: "http://localhost:8080/php/graficos.php",// + 'existencias_categoria_agotar',
                                         type: 'post',
                                         data: null,
                                         datatype: 'json'
                                     })
                                     .done(response => {
+                                        console.log(response);
                                         //se hacen los arreglos para poder recorrer las filas de la consulta
                                         var nombre = [];
                                         var existencia = [];
                                         //se genera un ciclo para poder recorrer las filas de la tabla de la base de datos
-                                        const result = JSON.parse(response);
+                                        const result = response;
                                         result.dataset.forEach(row => {
                                             //se recorren todos los datos que esten en las filas especificadas en el row
                                             nombre.push(row.nombre_categoria);
