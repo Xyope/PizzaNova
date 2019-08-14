@@ -19,8 +19,8 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="#">Cambiar Contraseña</a></li>
-                <li><a href="#">Cerrar Sesión</a></li>
+                
+                <li><a href="inicio.html">Pagina Principal</a></li>
                 <li><a href="#">Ayuda</a></li>
                 <li><a href="notas_read.html">Tareas</a></li>
                 <li><a href="materias_primas_read.html">Materias primas</a></li>
@@ -58,7 +58,7 @@
 <script type="text/javascript" src="../js/tema.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var url = "http://localhost/php/json_materia.php";
+        var url = "http://localhost:8080/php/json_materia.php";
 
         $.getJSON(url, function (result) {
 
@@ -85,7 +85,7 @@
         console.log("hola mami");
         $.ajax({
             type: "GET",
-            url: "http://localhost/php/delete_materia.php",
+            url: "http://localhost:8080/php/delete_materia.php",
             data: dataString,
             crossDomain: true,
             cache: false,

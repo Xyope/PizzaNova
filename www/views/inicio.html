@@ -3,8 +3,8 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <!-- <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -22,7 +22,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li><a href="#">Cambiar Contraseña</a></li>
-                <li><a href="#">Cerrar Sesión</a></li>
+                <li><a onclick=signOff() >Cerrar Sesión</a></li>
                 <li><a href="#">Ayuda</a></li>
             </ul>
         </div>
@@ -59,7 +59,7 @@
                             </a>
                         </div>
                         <div class="col-md-6 col-lg-3">
-                            <a href="#">
+                            <a href="reportes.html">
                                 <div class="statistic__item">
                                     <h2 class="number">REPORTES</h2>
                                     <div class="icon">
@@ -90,6 +90,8 @@
 <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="../js/jquery.slim.min.js"></script>
 <script type="text/javascript" src="../js/tema.js"></script>
+<script type="text/javascript" src="../js/sweetalert.min.js"></script>
+<script type="text/javascript" src="../js/functions.js"></script>
 <script>
     $(document).ready(function () {
                 function signOff() {
@@ -103,7 +105,7 @@
                         })
                         .then(function (value) {
                             if (value) {
-                                location.href = apiAccount + 'logout';
+                                location.href = "http://localhost:8080/php/logout.php"; // 'logout';
                             } else {
                                 swal({
                                     title: 'Enhorabuena',
@@ -117,7 +119,34 @@
                         });
                 }
             }
+
     )
+function signOff()
+{
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere cerrar la sesión?',
+        icon: 'warning',
+        buttons: ['Cancelar', 'Aceptar'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    })
+    .then(function(value){
+        if (value) {
+            location.href = "http://localhost:8080/php/logout.php"; //+ 'logout';
+        } else {
+            swal({
+                title: 'Enhorabuena',
+                text: 'Continúe con la sesión...',
+                icon: 'info',
+                button: 'Aceptar',
+                closeOnClickOutside: false,
+                closeOnEsc: false
+            });
+        }
+    });
+}
+
 </script>
 </body>
 

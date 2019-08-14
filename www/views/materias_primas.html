@@ -19,8 +19,7 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav">
-        <li><a href="#">Cambiar Contraseña</a></li>
-        <li><a href="#">Cerrar Sesión</a></li>
+        <li><a href="index.html">Pagina Principal</a></li>
         <li><a href="#">Ayuda</a></li>
         <li><a href="notas_read.html">Tareas</a></li>
         <li><a href="materias_primas_read.html">Materias primas</a></li>
@@ -37,11 +36,11 @@
         <hr>
         <div class="form-group">
           <label>Nombre</label>
-          <input id="create_nombre_materia" name="create_nombre_materia" class="form-control" placeholder="Materia Prima" type="text">
+          <input id="nombre_materia" name="nombre_materia" class="form-control" placeholder="Materia Prima" type="text">
           <label>Descripción</label>
-          <input id="create_descripcion" name="create_descripcion" class="form-control" placeholder="Descripción" type="text">
+          <input id="descripcion" name="descripcion" class="form-control" placeholder="Descripción" type="text">
           <label>Cantidad</label>
-          <input id="create_cantidad" name="create_cantidad" class="form-control" placeholder="cantidad" type="number" min="1"
+          <input id="cantidad" name="cantidad" class="form-control" placeholder="cantidad" type="number" min="1"
             max="999">
       </div>
 
@@ -65,11 +64,11 @@
 <script type="text/javascript">
   $(document).ready(function () {
     $("#insert").click(function () {
-      var nombre_materia = $("#create_nombre_materia").val();
-      var descripcion = $("#create_descripcion").val();
-      var cantidad = $("#create_cantidad").val();
-      var dataString = "nombre_materia=" + nombre_materia+ "&descripcion=" + descripcion + "&cantidad=" + cantidad + "&insert=";
-      if ($.trim(nombre_materia).length > 0 & $.trim(descripcion).length > 0 & $.trim(cantidad).length > 0) {
+      var nombre = $("#nombre_materia").val();
+      var descripcion = $("#descripcion").val();
+      var cantidad = $("#cantidad").val();
+      var dataString = "nombre_materia=" + nombre+ "&descripcion=" + descripcion + "&cantidad=" + cantidad + "&insert=";
+      if ($.trim(nombre).length > 0 & $.trim(descripcion).length > 0 & $.trim(cantidad).length > 0) {
         $.ajax({
           type: "POST",
           url: "http://localhost:8080/php/insert_materia.php",
@@ -81,7 +80,7 @@
           },
           success: function (data) {
             if (data == "success") {
-            sweetAlert(1, "materia prima guardada", 'materias_primas.html');
+            sweetAlert(1, "materia prima guardada", null);
               $("#insert").val('submit');
             } else if (data == "error") {
               alert("error");

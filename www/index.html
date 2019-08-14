@@ -34,7 +34,6 @@
                                 <input name="alias" id="alias" class="form-control" placeholder="Usuario" type="text">
                             </div> <!-- form-group// -->
                             <div class="form-group">
-                                <a class="float-right" href="views/perfil.html">CONTRASEÑA OLVIDADA?</a>
                                 <label>password</label>
                                 <input class="form-control" name="password" id="password" placeholder="******"
                                     type="password">
@@ -79,7 +78,9 @@
                                     sweetAlert(1, "Ingreso correctamente", 'views/inicio.html');
                                     $("#login").val('submit');
                                 } else if (data == "error") {
+                                    sweetAlert(2, "Usuario Incorrecto", null);
                                     alert("error");
+                                    
                                 }
                             }
                         })
