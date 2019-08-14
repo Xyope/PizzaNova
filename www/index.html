@@ -5,7 +5,7 @@
 <head>
     <!-- <meta http-equiv="Content-Security-Policy"
         content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
-        <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline';>
+    <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline' ;>
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -13,13 +13,13 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" rel="stylesheet" media="all">
     <link rel="stylesheet" type="text/css" href="css/all.css" rel="stylesheet" media="all">
-    
+
 </head>
 
 <body>
     <div data-role="page" id="pagina1">
         <div data-role="header">
-            
+
         </div>
 
         <body>
@@ -47,49 +47,72 @@
                             </div> <!-- form-group// -->
                         </form>
                     </article>
-        
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/geturi.js"></script>
-        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="js/sweetalert.min.js"></script>
-        <script type="text/javascript" src="js/functions.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/tema.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#login").click(function () {
-                    var username = $("#alias").val();
-                    var pass = $("#password").val();
-                    $("login").val("Ingresando");
-                    var dataString = "alias=" + username + "&password=" + pass + "&login=";
-                    if ($.trim(username).length > 0 & $.trim(pass).length > 0) {
-                        $.ajax({
-                            type: "POST",
-                            url: "http://localhost:8080/php/login.php",
-                            data: dataString,
-                            crossDomain: true,
-                            cache: false,
 
-                            beforeSend: function () {
-                                $("#login").val('Entro Correctamente');
-                            },
-                            success: function (data) {
-                                if (data == "success") {
-                                    sweetAlert(1, "Ingreso correctamente", 'views/inicio.html');
-                                    $("#login").val('submit');
-                                } else if (data == "error") {
-                                    sweetAlert(2, "Usuario Incorrecto", null);
-                                    alert("error");
-                                    
+                    <script type="text/javascript" src="js/index.js"></script>
+                    <script type="text/javascript" src="js/geturi.js"></script>
+                    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+                    <script type="text/javascript" src="js/sweetalert.min.js"></script>
+                    <script type="text/javascript" src="js/functions.js"></script>
+                    <script type="text/javascript" src="js/index.js"></script>
+                    <script type="text/javascript" src="js/tema.js"></script>
+                    <script>
+                        var i = 0;
+                        
+                            $("#login").click(function () {
+                                var username = $("#alias").val();
+                                var pass = $("#password").val();
+                                $("login").val("Ingresando");
+                                var dataString = "alias=" + username + "&password=" + pass + "&login=";
+                                if ($.trim(username).length > 0 & $.trim(pass).length > 0) {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "http://localhost:8080/php/login.php",
+                                        data: dataString,
+                                        crossDomain: true,
+                                        cache: false,
+
+                                        beforeSend: function () {
+                                            $("#login").val('Entro Correctamente');
+                                        },
+                                        success: function (data) {
+                                            if (data == "success") {
+                                                sweetAlert(1, "Ingreso correctamente",
+                                                    'views/inicio.html');
+                                                $("#login").val('submit');
+                                            } else if (data == "error") {
+                                                sweetAlert(2, "Usuario Incorrecto", null);
+                                                alert("error");
+                                                i++
+                                                if (i >= 3) {
+                                                    $.ajax({
+                                                            type: "POST",
+                                                            url: "http://localhost:8080/php/cambiar.php",
+                                                            data: dataString,
+                                                            crossDomain: true,
+                                                            cache: false,
+
+                                                            success: function (data) {
+                                                                console.log(data);
+                                                                sweetAlert(2, "Usuario bloqueado", null);
+                                                                $("#login").val(
+                                                                    'Usuario bloqueado perro'
+                                                                );
+                                                            }
+                                                        }
+
+                                                    )
+                                                }
+
+                                            }
+                                        }
+                                    })
+
+
                                 }
-                            }
-                        })
-                        
-                        
-                    }
-                    return false;
-                });
-            });
-        </script>
-</body>
+                                return false;
+                            });
+                    
+                    </script>
+        </body>
+
 </html>

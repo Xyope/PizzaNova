@@ -17,7 +17,7 @@ include "db.php";
 if(isset($_POST['login'])){
 $usuario=$_POST['alias'];
 $password=$_POST['password'];
-$login = mysqli_num_rows(mysqli_query($con, "SELECT `alias`, `clave_usuario` FROM `usuarios` WHERE `alias`='$usuario' and `clave_usuario`='$password'"));
+$login = mysqli_num_rows(mysqli_query($con, "SELECT `alias`, `clave_usuario`, `estado_usuario` FROM `usuarios` WHERE `alias`='$usuario' and `clave_usuario`='$password' and `estado_usuario`=1"));
 if ($login !=0)
     echo "success";
 else
