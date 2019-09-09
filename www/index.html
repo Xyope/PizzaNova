@@ -5,6 +5,7 @@
 <head>
     <!-- <meta http-equiv="Content-Security-Policy"
         content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline' ;>
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -66,7 +67,7 @@
                                 if ($.trim(username).length > 0 & $.trim(pass).length > 0) {
                                     $.ajax({
                                         type: "POST",
-                                        url: "http://localhost:8080/php/login.php",
+                                        url: "https://pizzanova2.000webhostapp.com/php/login.php",
                                         data: dataString,
                                         crossDomain: true,
                                         cache: false,
@@ -86,7 +87,7 @@
                                                 if (i >= 3) {
                                                     $.ajax({
                                                             type: "POST",
-                                                            url: "http://localhost:8080/php/cambiar.php",
+                                                            url: "https://pizzanova2.000webhostapp.com/php/cambiar.php",
                                                             data: dataString,
                                                             crossDomain: true,
                                                             cache: false,

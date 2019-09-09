@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -21,9 +22,7 @@
             <ul class="sidebar-nav">
                 
                 <li><a href="inicio.html">Pagina Principal</a></li>
-                <li><a href="#">Ayuda</a></li>
                 <li><a href="notas_read.html">Tareas</a></li>
-                <li><a href="materias_primas_read.html">Materias primas</a></li>
             </ul>
         </div>
         <form id="form-group" name="form-group">
@@ -58,7 +57,7 @@
 <script type="text/javascript" src="../js/tema.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var url = "http://localhost:8080/php/json_materia.php";
+        var url = "https://pizzanova2.000webhostapp.com/php/json_materia.php";
 
         $.getJSON(url, function (result) {
 
@@ -85,7 +84,7 @@
         console.log("hola mami");
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/php/delete_materia.php",
+            url: "https://pizzanova2.000webhostapp.com/php/delete_materia.php",
             data: dataString,
             crossDomain: true,
             cache: false,
@@ -93,8 +92,8 @@
                 $("#delete").val('Connecting...');
             },
             success: function (data) {
-                sweetAlert(1, 'Materia prima eliminada correctamente', materias_primas_read.html);
                 if (data == "success") {
+                    sweetAlert(1, 'Materia prima eliminada correctamente', materias_primas_read.html);
                     alert("Deleted");
                     $("#delete").val("Delete");
                 } else if (data == "error") {

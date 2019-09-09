@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline' ;>
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -20,9 +21,7 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="#">Cambiar Contraseña</a></li>
-                <li><a href="#">Cerrar Sesión</a></li>
-                <li><a href="#">Ayuda</a></li>
+                <li><a href="inicio.html">Página Principal</a></li>
                 <li><a href="notas_read.html">Tareas</a></li>
                 <li><a href="materias_primas_read.html">Materias primas</a></li>
             </ul>
@@ -79,7 +78,7 @@
                     function graficar_existencia_categoria_agotar() {
                         //se manda a pedir los datos de la api
                         $.ajax({
-                                url: "http://localhost:8080/php/graficos.php", // + 'existencias_categoria_agotar',
+                                url: "https://pizzanova2.000webhostapp.com/php/graficos.php", // + 'existencias_categoria_agotar',
                                 type: 'post',
                                 data: null,
                                 datatype: 'json'
@@ -115,7 +114,7 @@
                 function graficar_existencia_categoria_sobre_existencias() {
                     //se manda a pedir los datos de la api
                     $.ajax({
-                            url: "http://localhost:8080/php/grafico2.php", //'existencias_categoria_sobre_existen',
+                            url: "https://pizzanova2.000webhostapp.com/php/grafico2.php", //'existencias_categoria_sobre_existen',
                             type: 'post',
                             data: null,
                             datatype: 'json'
@@ -148,7 +147,7 @@
                 function graficar_ventas_platillos() {
                     //se manda a pedir los datos de la api
                     $.ajax({
-                            url: "http://localhost:8080/php/grafico3.php", //'ventas_platillos_mayor',
+                            url: "https://pizzanova2.000webhostapp.com/php/grafico3.php", //'ventas_platillos_mayor',
                             type: 'post',
                             data: null,
                             datatype: 'json'
@@ -180,7 +179,7 @@
                 function graficar_ventas_platillos_menor() {
                     //se manda a pedir los datos de la api
                     $.ajax({
-                            url: "http://localhost:8080/php/grafico4.php", //'ventas_platillos_menor',
+                            url: "https://pizzanova2.000webhostapp.com/php/grafico4.php", //'ventas_platillos_menor',
                             type: 'post',
                             data: null,
                             datatype: 'json'

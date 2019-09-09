@@ -89,7 +89,7 @@ function grafico_existencia_categoria_agotar(canvas, xAxis, yAxis, legend, title
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 5
+                        stepSize: 50
                     }
                 }]
             }
@@ -132,7 +132,7 @@ function grafico_existencia_categoria(canvas, xAxis, yAxis, legend, title) { //r
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 2
+                        stepSize: 50
                     }
                 }]
             }
@@ -177,7 +177,7 @@ function grafica_venta_platillos_mayor(canvas, xAxis, yAxis, legend, title) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 1
+                        stepSize: 50
                     }
                 }]
             }
@@ -223,7 +223,7 @@ function grafica_venta_platillos_menores(canvas, xAxis, yAxis, legend, title) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 15
+                        stepSize: 50
                     }
                 }]
             }
@@ -267,7 +267,7 @@ function grafica_platillos_caros(canvas, xAxis, yAxis, legend, title) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 5
+                        stepSize: 50
                     }
                 }]
             }
@@ -312,7 +312,7 @@ function grafica_platillos_baratos(canvas, xAxis, yAxis, legend, title) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 5
+                        stepSize: 50
                     }
                 }]
             }
@@ -353,7 +353,7 @@ function grafico_existencia_categoria_sobre_existen(canvas, xAxis, yAxis, legend
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 5
+                        stepSize: 50
                     }
                 }]
             }

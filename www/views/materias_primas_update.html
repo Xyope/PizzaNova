@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+  <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
   <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -81,16 +82,17 @@
         console.log(dataString);
       $.ajax({
         type: "POST",
-        url: "http://localhost/php/update_materia.php",
+        url: "https://pizzanova2.000webhostapp.com/php/update_materia.php",
         data: dataString,
         crossDomain: true,
         cache: false,
         beforeSend: function () {
           $("#update").val('Connecting...');
+          console.log("no funciona")
         },
         success: function (data) {
           if (data == "success") {
-            sweetAlert(1, "Tarea actualizada correctamente", null);
+            sweetAlert(1, "Mateteria actualizada correctamente", null);
             $("#update").val("Update");
           } else if (data == "error") {
             alert("error");

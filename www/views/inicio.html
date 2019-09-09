@@ -5,6 +5,7 @@
 <head>
     <!-- <meta http-equiv="Content-Security-Policy"
         content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+    <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -21,9 +22,7 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="#">Cambiar Contraseña</a></li>
                 <li><a onclick=signOff() >Cerrar Sesión</a></li>
-                <li><a href="#">Ayuda</a></li>
             </ul>
         </div>
         <div data-role="page" id="page-content-wrapper">
@@ -105,7 +104,7 @@
                         })
                         .then(function (value) {
                             if (value) {
-                                location.href = "http://localhost:8080/php/logout.php"; // 'logout';
+                                location.href = "https://pizzanova2.000webhostapp.com/php/logout.php"; // 'logout';
                             } else {
                                 swal({
                                     title: 'Enhorabuena',
@@ -133,7 +132,7 @@ function signOff()
     })
     .then(function(value){
         if (value) {
-            location.href = "http://localhost:8080/php/logout.php"; //+ 'logout';
+            location.href = "../index.html"; //+ 'logout';
         } else {
             swal({
                 title: 'Enhorabuena',

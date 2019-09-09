@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -19,10 +20,8 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="#">Cambiar Contraseña</a></li>
-                <li><a href="#">Cerrar Sesión</a></li>
-                <li><a href="#">Ayuda</a></li>
-                <li><a href="notas_read.html">Tareas</a></li>
+
+                <li><a href="inicio.html">Página Principal</a></li>
                 <li><a href="materias_primas_read.html">Materias primas</a></li>
             </ul>
         </div>
@@ -58,7 +57,7 @@
 <script type="text/javascript" src="../js/tema.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var url = "http://localhost:8080/php/json_notas.php";
+        var url = "https://pizzanova2.000webhostapp.com/php/json_notas.php";
         
         $.getJSON(url, function (result) {
 
@@ -83,7 +82,7 @@
         console.log("hola mami")
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/php/delete_notas.php",
+            url: "https://pizzanova2.000webhostapp.com/php/delete_notas.php",
             data: dataString,
             crossDomain: true,
             cache: false,
